@@ -685,19 +685,26 @@ label {
   bottom: 0;
   position: fixed;
   width: 100%;
-  height: 20px;
+  height: 25px;
   z-index: 999;
+  background-color: var(--bittersweet);
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
 
 .footer-bottom {
   margin-top: auto;
-  background-color: var(--gainsboro);
+  background: transparent;
   padding-block: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
 }
 
 .copyright {
   text-align: center;
-  color: var(--bittersweet);
+  color: var(--white);
 }
 
 /*-----------------------------------*\
