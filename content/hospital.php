@@ -79,6 +79,9 @@ if (!isset($_SESSION['uid'])) {
                     <li class="navbar-item">
                         <a href="hospital.php" class="navbar-link"><strong>Hospitals</strong></a>
                     </li>
+                    <li class="navbar-item">
+                        <a href="mapnav.php" class="navbar-link"><strong>Map</strong></a>
+                    </li>
                 </ul>
 
                 <!-- Dropdown Menu -->
@@ -92,7 +95,9 @@ if (!isset($_SESSION['uid'])) {
                             <div class="user-info">
                                 <img src="../assets/images/doc1.jpeg" alt="User Avatar" class="user-avatar" />
                                 <div class="user-details">
-                                    <p class="user-name"><?php echo $name; ?></p>
+                                    <p class="user-name">
+                                        <?php echo $name; ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr />
@@ -116,13 +121,12 @@ if (!isset($_SESSION['uid'])) {
 
             <h2>Hospital Information</h2>
             <table class="hospital-table">
-                <thead>
+
+                <tbody>
                     <tr>
                         <th>Name</th>
                         <th>Phone</th>
                     </tr>
-                </thead>
-                <tbody>
                     <?php
                     foreach ($hospitalData as $hospital) {
                         echo "<tr>";
