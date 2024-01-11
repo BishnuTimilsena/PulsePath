@@ -81,6 +81,9 @@ if (isset($_POST['submit'])) {
                     <li class="navbar-item">
                         <a href="content/hospital.php" class="navbar-link"><strong>Hospitals</strong></a>
                     </li>
+                    <li class="navbar-item">
+                        <a href="content/mapnav.php" class="navbar-link"><strong>Map</strong></a>
+                    </li>
                 </ul>
                 <!-- Dropdown Menu -->
                 <ul class="nav-action-list">

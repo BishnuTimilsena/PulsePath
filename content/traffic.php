@@ -79,9 +79,8 @@ if (!isset($_SESSION['uid'])) {
                     <li class="navbar-item">
                         <a href="hospital.php" class="navbar-link"><strong>Hospitals</strong></a>
                     </li>
-
                     <li class="navbar-item">
-                        <a href="map.php" class="navbar-link"><strong>Map</strong></a>
+                        <a href="mapnav.php" class="navbar-link"><strong>Map</strong></a>
                     </li>
                 </ul>
 
@@ -90,13 +89,15 @@ if (!isset($_SESSION['uid'])) {
                     <li id="profile-dropdown">
                         <div class="nav-action-btn">
                             <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
-                            <!-- <span class="nav-action-text">Login / Register</span> -->
+                            <span class="nav-action-text">Login / Register</span>
                         </div>
                         <div class="dropdown-content">
                             <div class="user-info">
                                 <img src="../assets/images/doc1.jpeg" alt="User Avatar" class="user-avatar" />
                                 <div class="user-details">
-                                    <p class="user-name"><?php echo $name; ?></p>
+                                    <p class="user-name">
+                                        <?php echo $name; ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr />
@@ -129,11 +130,15 @@ if (!isset($_SESSION['uid'])) {
                         <th>Office</th>
                         <th>Phone</th>
                     </tr>
-                    <?php foreach ($trafficPoliceData as $trafficPolice) : ?>
-                    <tr>
-                        <td><?php echo $trafficPolice['office']; ?></td>
-                        <td><?php echo $trafficPolice['phone']; ?></td>
-                    </tr>
+                    <?php foreach ($trafficPoliceData as $trafficPolice): ?>
+                        <tr>
+                            <td>
+                                <?php echo $trafficPolice['office']; ?>
+                            </td>
+                            <td>
+                                <?php echo $trafficPolice['phone']; ?>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
