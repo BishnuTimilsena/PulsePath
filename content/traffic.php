@@ -37,8 +37,7 @@ if (!isset($_SESSION['uid'])) {
 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 
 <body>
@@ -130,7 +129,7 @@ if (!isset($_SESSION['uid'])) {
                         <th>Office</th>
                         <th>Phone</th>
                     </tr>
-                    <?php foreach ($trafficPoliceData as $trafficPolice): ?>
+                    <?php foreach ($trafficPoliceData as $trafficPolice) : ?>
                         <tr>
                             <td>
                                 <?php echo $trafficPolice['office']; ?>
@@ -145,18 +144,12 @@ if (!isset($_SESSION['uid'])) {
 
     </section>
 
-    <section class="footer">
-        <footer>
-            <div class="footer-bottom">
-                <div class="container">
-                    <p class="copyright">
-                        &copy; 2024 cat.gif. All
-                        Rights Reserved
-                    </p>
-                </div>
-            </div>
-        </footer>
-    </section>
+    <!-- 
+    - #FOOTER
+  -->
+    <?php
+    include 'footer/footer.php';
+    ?>
     <!-- 
     - custom js link
   -->

@@ -409,7 +409,7 @@ body {
 .ambulance-png {
   position: absolute;
   left: 60%;
-  margin-right: 70px;
+  margin-left: 70px;
 }
 .ambulance-png img {
   width: 65%;
