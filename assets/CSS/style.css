@@ -1,0 +1,1046 @@
+:root {
+    /**
+       * colors
+       */
+  
+    --maximum-blue-green_10: hsla(120, 75%, 45%, 0.1);
+    --rich-black-fogra-29: hsl(217, 28%, 9%);
+    --gray-x-11-gray: hsl(0, 0%, 74%);
+    --oxford-blue_60: hsla(230, 41%, 14%, 0.6);
+    --bittersweet: #006635; /* Red color */
+    --smoky-black: rgb(7, 6, 1);
+    --gainsboro: hsl(0, 0%, 88%);
+    --black_90: hsla(0, 0%, 0%, 0.9);
+    --cultured: hsl(200, 12%, 95%);
+    --salmon: #006635; /* Red color */
+    --white: #ffffff; /* White color */
+    --black: hsl(0, 0%, 0%);
+    --onyx: #fe0000; /* Green color */
+    /**
+       * typography
+       */
+  
+    --ff-league: "League Spartan", sans-serif;
+    --ff-league-spartan: "League Spartan", sans-serif;
+  
+    --fs-1: 3rem;
+    --fs-2: 2.6rem;
+    --fs-3: 2.2rem;
+    --fs-4: 2rem;
+    --fs-5: 1.8rem;
+    --fs-6: 1.6rem;
+    --fs-7: 1.4rem;
+    --fs-8: 1.2rem;
+  
+    --fw-300: 300;
+    --fw-500: 500;
+    --fw-600: 600;
+    --fw-700: 700;
+  
+    /*** transition */
+  
+    --transition-1: 0.25s ease;
+    --transition-2: 0.5s ease;
+    --cubic-out: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+    --cubic-in: cubic-bezier(0.33, 0.85, 0.56, 1.02);
+  
+    /*** spacing */
+  
+    --section-padding: 60px;
+  }
+  
+  /*-----------------------------------*\
+     * #RESET
+    \*-----------------------------------*/
+  
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  a,
+  img,
+  span,
+  table,
+  tbody,
+  button,
+  ion-icon {
+    display: block;
+  }
+  
+  button,
+  input {
+    font: inherit;
+    background: none;
+    border: none;
+  }
+  
+  input {
+    width: 100%;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  address {
+    font-style: normal;
+    line-height: 1.8;
+  }
+  
+  html {
+    font-family: var(--ff-league-spartan);
+    font-size: 10px;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background: var(--white);
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 1.6rem;
+    padding-block-start: 90px;
+  }
+  
+  /*-----------------------------------*\
+     * #REUSED STYLE
+    \*-----------------------------------*/
+  
+  .container {
+    padding-inline: 15px;
+  }
+  
+  .section {
+    padding-block: var(--section-padding);
+  }
+  
+  .h1,
+  .h2 {
+    color: var(--onyx);
+  }
+  
+  .h1 {
+    font-size: var(--fs-1);
+    font-weight: var(--fw-300);
+    line-height: 1.5;
+  }
+  
+  .h2 {
+    font-size: var(--fs-2);
+  }
+  
+  .btn {
+    color: var(--color, var(--bittersweet));
+    background: var(--white);
+    font-size: var(--fs-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 14px 25px;
+    border: 3px solid var(--border-color, var(--bittersweet));
+    border-radius: 10px;
+    width: 250px;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
+  
+  .btn-primary:is(:hover, :focus) {
+    background: var(--onyx);
+    border-color: var(--onyx);
+    color: var(--white);
+  }
+  
+  /*-----------------------------------*\
+     * #HEADER
+    \*-----------------------------------*/
+  
+  .header {
+    background: var(--white);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: var(--transition-1);
+    z-index: 4;
+  }
+  .header.active {
+    box-shadow: 0 2px 10px hsla(0, 0%, 0%, 0.1);
+  }
+  .header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 10px;
+    margin-right: 300px;
+  }
+  
+  .nav-open-btn {
+    font-size: 30px;
+    color: var(--bittersweet);
+    transition: transform 0.2s;
+    padding: 8px;
+  }
+  
+  .nav-open-btn:is(:hover, :focus) {
+    color: var(--onyx);
+    transform: scale(1.2);
+  }
+  
+  .nav-open-btn ion-icon {
+    --ionicon-stroke-width: 40px;
+  }
+  
+  .navbar {
+    background: var(--white);
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 100%;
+    max-width: 270px;
+    height: 100%;
+    border-right: 3px solid var(--rich-black-fogra-29);
+    font-family: var(--ff-league);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    z-index: 2;
+    visibility: hidden;
+    transition: 0.25s var(--cubic-out);
+  }
+  
+  .navbar.active {
+    visibility: visible;
+    transform: translateX(280px);
+    transition: 0.5s var(--cubic-in);
+  }
+  
+  .nav-close-btn {
+    color: var(--bittersweet);
+    transition: transform 0.2s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 13px;
+    font-size: 25px;
+  }
+  
+  .nav-close-btn ion-icon {
+    --ionicon-stroke-width: 55px;
+  }
+  
+  .nav-close-btn:is(:hover, :focus) {
+    color: var(--onyx);
+    transform: scale(1.3);
+  }
+  
+  .navbar .logo {
+    background: var(--maximum-blue-green_10);
+    padding-block: 50px 40px;
+  }
+  
+  .navbar .logo img {
+    margin-inline: auto;
+  }
+  
+  .navbar-list,
+  .nav-action-list {
+    margin: 30px;
+  }
+  
+  .navbar-list {
+    padding: 5px;
+    border-bottom: 1px solid var(--gainsboro);
+  }
+  
+  .navbar-link {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 50px;
+    color: var(--bittersweet);
+    padding-block: 10px;
+    transition: var(--transition-1);
+  }
+  
+  .navbar-link:is(:hover, :focus) {
+    color: var(--onyx);
+  }
+  
+  .navbar-item:not(:last-child) {
+    border-bottom: 1px solid var(--gainsboro);
+  }
+  
+  .nav-action-list {
+    padding: 20px;
+  }
+  
+  .nav-action-btn {
+    color: var(--bittersweet);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding-block: 10px;
+    transition: var(--transition-1);
+  }
+  
+  .nav-action-btn:is(:hover, :focus) {
+    color: var(--onyx);
+  }
+  
+  .nav-action-btn ion-icon {
+    font-size: 28px;
+    --ionicon-stroke-width: 50px;
+  }
+  
+  .nav-action-text strong {
+    font-weight: initial;
+    color: var(--bittersweet);
+  }
+  
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: hsla(0, 0%, 0%, 0.6);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-1);
+  }
+  
+  .overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  /*-----------------------------------*\
+     * #Profile Dropdown
+    \*-----------------------------------*/
+  
+  #profile-dropdown {
+    position: relative;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 45px;
+    right: -80px;
+    background-color: var(--white);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+    width: 200px;
+  }
+  
+  #profile-dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content a {
+    color: var(--bittersweet);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: large;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: var(--gainsboro);
+    color: var(--onyx);
+  }
+  
+  .user-info {
+    display: flex;
+    margin-bottom: 5px;
+  }
+  
+  .user-avatar {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    display: flex;
+  }
+  
+  .user-name {
+    font-weight: var(--fw-600);
+    margin-top: 15px;
+    color: var(--bittersweet);
+    font-size: large;
+  }
+  
+  .user-name:is(:hover, :focus) {
+    color: var(--onyx);
+  }
+  
+  /*-----------------------------------*\
+     * #HERO
+    \*-----------------------------------*/
+  
+  .hero {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .hero-title {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  
+  .hero-title > strong {
+    display: block;
+  }
+  
+  .ambulance-png {
+    position: absolute;
+    left: 60%;
+    margin-right: 70px;
+  }
+  .ambulance-png img {
+    width: 65%;
+    height: auto;
+  }
+  /*-----------------------------------*\
+     * #Doctor Section
+    \*-----------------------------------*/
+  
+  .doctors-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* padding: 20px; */
+    z-index: 0;
+    position: relative;
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .doctors-section h3 {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    text-transform: uppercase;
+    color: var(--onyx);
+    font-size: 40px;
+  }
+  
+  .doctor-card {
+    margin: 10px;
+    cursor: pointer;
+    color: var(--bittersweet);
+    transition: transform 0.3s ease-in-out;
+    border: 2px solid var(--bittersweet);
+    padding: 10px;
+    width: 250px;
+    height: 330px;
+    position: relative;
+  }
+  
+  .doctor-card:hover h2 {
+    color: var(--onyx);
+  }
+  
+  .doctor-card:hover {
+    /* color : var(--onyx); */
+    border: 2px solid var(--onyx);
+    transform: scale(1.1);
+  }
+  
+  .doctor-card img {
+    max-width: 100%;
+    height: 250px;
+    margin-bottom: 20px;
+    object-fit: fill;
+  }
+  
+  .doctor-info-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    width: 320px;
+    line-height: 1.3;
+    text-align: left;
+    border: 2px solid var(--bittersweet);
+    overflow: hidden;
+  }
+  
+  .doctor-info-box h2 {
+    color: var(--bittersweet);
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .doctor-info-box:hover h2 {
+    color: var(--onyx);
+  }
+  
+  .doctor-info-box.active {
+    display: block;
+  }
+  
+  .close-btn {
+    position: absolute;
+    transition: transform 0.2s ease-in-out;
+    top: 8px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  .close-btn:hover {
+    color: var(--onyx);
+    transform: scale(1.2);
+  }
+  
+  /*-----------------------------------*\
+     * #Hospital Section
+    \*-----------------------------------*/
+  
+  .hospital-section {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .hospital-section h2 {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: var(--onyx);
+    font-size: 30px;
+  }
+  .hospital-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .hospital-table th,
+  .hospital-table td {
+    border: 1px solid var(--gray-x-11-gray);
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .hospital-table th {
+    background-color: var(--maximum-blue-green_10);
+    text-align: center;
+  }
+  
+  .hospital-table tr:nth-child(even) {
+    background-color: var(--gainsboro);
+  }
+  
+  .hospital-table tr:nth-child(odd) {
+    background-color: var(--white);
+  }
+  
+  /*-----------------------------------*\
+     * #Traffic Section
+    \*-----------------------------------*/
+  
+  .traffic-section {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .traffic-section h2 {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: var(--onyx);
+    font-size: 30px;
+  }
+  
+  .traffic-section p {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    color: var(--bittersweet);
+    font-size: 25px;
+  }
+  
+  .traffic-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .traffic-table th,
+  .traffic-table td {
+    border: 1px solid var(--gray-x-11-gray);
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .traffic-table th {
+    background-color: var(--maximum-blue-green_10);
+    text-align: center;
+  }
+  
+  .traffic-table tr:nth-child(even) {
+    background-color: var(--gainsboro);
+  }
+  
+  .traffic-table tr:nth-child(odd) {
+    background-color: var(--white);
+  }
+  
+  /*-----------------------------------*\
+     * #MAP
+    \*-----------------------------------*/
+    #map {
+      height: 50vh; 
+      margin-bottom: var(--section-padding);
+      z-index: 0;
+    }
+    .map-section {
+      display: grid;
+      margin-top: 100px;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .map-section  h1{
+      margin-bottom: 30px;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      color: var(--onyx);
+      font-size: 30px;
+    }
+    .form-group {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    label {
+      margin-bottom: 5px;
+    }
+    .map-section input {
+      width: 250px;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      border: 1px solid var(--bittersweet); 
+      border-radius: 5px; 
+    }
+    
+    .map-section button {
+      color: var(--color, var(--bittersweet));
+      background: var(--white);
+      font-size: var(--fs-5);
+      gap: 5px;
+      display: flex;
+      padding: 14px 25px;
+      margin-left: 10px;
+      border: 2px solid var(--border-color, var(--bittersweet));
+      border-radius: 10px;
+      width: 250px;
+      transition: 0.3s;
+      letter-spacing: 3px;
+    }
+    
+    .map-section button:is(:hover, :focus) {
+      background: var(--onyx);
+      border-color: var(--onyx);
+      color: var(--white);
+    }
+    
+  
+  
+  /*-----------------------------------*\
+     * #FOOTER
+    \*-----------------------------------*/
+  .footer {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    height: 20px;
+    z-index: 999;
+  }
+  
+  .footer-bottom {
+    margin-top: auto;
+    background-color: var(--gainsboro);
+    padding-block: 5px;
+  }
+  
+  .copyright {
+    text-align: center;
+    color: var(--bittersweet);
+  }
+  
+  /*-----------------------------------*\
+     * #MEDIA QUERIES
+    \*-----------------------------------*/
+  
+  @media (min-width: 360px) {
+    /**
+           * CUSTOM PROPERTY
+           */
+  
+    :root {
+      /**
+             * typography
+             */
+  
+      --fs-1: 4rem;
+    }
+  
+    /**
+           * REUSED STYLE
+           */
+  
+    .container {
+      max-width: 570px;
+      width: 100%;
+      margin-inline: auto;
+    }
+    .hero-title {
+      font-size: 40px;
+    }
+    .hero {
+      height: 280px;
+      margin-left: 32px;
+    }
+    #map {
+      margin: 5px;
+    }
+  }
+  
+  @media (min-width: 575px) {
+    /**
+         * CUSTOM PROPERTY
+         */
+  
+    :root {
+      /**
+           * typography
+           */
+  
+      --fs-1: 4rem;
+    }
+  
+    /**
+         * REUSED STYLE
+         */
+  
+    .container {
+      max-width: 650px;
+      width: 100%;
+      margin-inline: auto;
+    }
+    .hero {
+      height: 380px;
+      margin-left: 36px;
+    }
+    /* .ambulance-png {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        margin-right: 0;
+      } */
+  }
+  
+  @media (min-width: 680px) {
+    /**
+         * CUSTOM PROPERTY
+         */
+  
+    :root {
+      /**
+           * typography
+           */
+  
+      --fs-1: 4rem;
+    }
+  
+    /**
+         * REUSED STYLE
+         */
+  
+    .container {
+      max-width: 720px;
+      width: 100%;
+      margin-inline: auto;
+    }
+    .hero {
+      height: 480px;
+      margin-left: 36px;
+    }
+  }
+  /**
+       * responsive for larger than 768px screen
+       */
+  
+  @media (min-width: 768px) {
+    /**
+         * CUSTOM PROPERTY
+         */
+  
+    :root {
+      /**
+           * typography
+           */
+  
+      --fs-2: 3rem;
+    }
+  
+    /**
+         * REUSED STYLE
+         */
+  
+    .container {
+      max-width: 790px;
+      width: 100%;
+      margin-inline: auto;
+    }
+    .hero {
+      height: 580px;
+      margin-left: 30px;
+    }
+    #map {
+      height: 300px;
+      margin: 5px;
+    }
+    .h4 {
+      --fs-5: 2rem;
+    }
+  }
+  
+  /**
+       * responsive for larger than 992px screen
+       */
+  
+  @media (min-width: 992px) {
+    /**
+         * CUSTOM PROPERTY
+         */
+  
+    :root {
+      /**
+           * typography
+           */
+  
+      --fs-3: 2.4rem;
+    }
+  
+    /**
+         * REUSED STYLE
+         */
+  
+    .container {
+      max-width: 990px;
+      width: 100%;
+      margin-inline: auto;
+    }
+    .hero {
+      height: 680px;
+      margin-right: -60px;
+    }
+  
+    /**
+         * HEADER
+         */
+  
+    .nav-open-btn,
+    .nav-close-btn,
+    .navbar .logo,
+    .nav-action-text,
+    .overlay {
+      display: none;
+    }
+  
+    .navbar,
+    .navbar-list,
+    .nav-action-list {
+      all: unset;
+    }
+  
+    .navbar-item:not(:last-child) {
+      border: none;
+    }
+  
+    .navbar-list,
+    .nav-action-list {
+      display: flex;
+    }
+  
+    .nav-action-list {
+      gap: 20px;
+    }
+  
+    .navbar {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+    }
+  
+    .navbar-list {
+      margin-inline: auto;
+      gap: 35px;
+    }
+  
+    .navbar-link {
+      font-family: var(--ff-league);
+      font-weight: var(--fw-500);
+    }
+  
+    .nav-action-list > li:first-child {
+      display: block;
+    }
+  
+    .nav-action-btn {
+      position: relative;
+    }
+  }
+  
+  @media (min-width: 110px) {
+    /**
+         * CUSTOM PROPERTY
+         */
+  
+    :root {
+      /**
+           * typography
+           */
+  
+      --fs-1: 5rem;
+      --fs-2: 3.6rem;
+    }
+  
+    /**
+         * REUSED STYLE
+         */
+  
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      margin-inline: auto;
+    }
+  
+    /**
+         * HERO
+         */
+  
+    .hero {
+      height: 680px;
+      margin-left: 40px;
+    }
+  
+    .hero .container {
+      max-width: 1000px;
+    }
+  }
+  
+  @media (min-width: 1000px) {
+    /**
+         * CUSTOM PROPERTY
+         */
+  
+    :root {
+      /**
+           * typography
+           */
+  
+      --fs-1: 5rem;
+      --fs-2: 3.6rem;
+    }
+  
+    /**
+         * REUSED STYLE
+         */
+  
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      margin-inline: auto;
+    }
+  
+    /**
+         * HERO
+         */
+  
+    .hero {
+      height: 680px;
+      margin-left: -20px;
+    }
+  
+    .hero .container {
+      max-width: 1000px;
+    }
+  }
+  
+  /**
+       * responsive for larger than 1200px screen
+       */
+  
+  @media (min-width: 1200px) {
+    /**
+         * CUSTOM PROPERTY
+         */
+  
+    :root {
+      /**
+           * typography
+           */
+  
+      --fs-1: 5rem;
+      --fs-2: 3.6rem;
+    }
+  
+    /**
+         * REUSED STYLE
+         */
+  
+    .container {
+      max-width: 1280px;
+      width: 100%;
+      margin-inline: auto;
+    }
+  
+    /**
+         * HERO
+         */
+  
+    .hero {
+      height: 680px;
+      margin-left: -270px;
+    }
+  
+    .hero .container {
+      max-width: 1000px;
+    }
+  }
+  
