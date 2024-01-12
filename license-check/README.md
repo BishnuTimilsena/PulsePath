@@ -45,15 +45,17 @@ python main.py
 ```
 ### Making a Request
 Make a POST request to localhost:5000/verify-license with the following request body:
+
 {
-  "dob": "2020-01-03",
-  "license_number": "01-02-01010101"
+    "dob": "2020-01-03",
+    "license_number": "01-02-01010101"
 }
 
 ### Expected Response
 Upon successful verification, the response should be:
+
 {
-  "message": "Successfully verified"
+    "message": "Successfully verified"
 }
 
 '''
