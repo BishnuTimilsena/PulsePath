@@ -11,6 +11,25 @@ PulsePath is a cutting-edge web application meticulously crafted to streamline a
 
 4. Emergency Alerts: Send message and live location to traffic control and hospitals for swift response.
 
+## Project Structure
+```
+.
+├── assets                  #.
+│   ├── CSS                 # Contains the css 
+│   ├── images              # Contains image used
+│   └── js                  # Contains Js for slider
+└── ...
+├── content                 # Pages 
+│   ├── User                # Login and signup
+│   ├── images              # Contains image used
+│   ├── images              # Contains image used
+│   └── js                  # Contains Js for slider  
+└── ...
+├── .gitignore     
+├── LICENSE        
+├── README.md
+└── index.php              # Home page
+
 ## Collaborators
 - [Pradip Dhungana](https://github.com/dhunganaPradeep)
 - [Vision Rijal](https://github.com/visionrijal)

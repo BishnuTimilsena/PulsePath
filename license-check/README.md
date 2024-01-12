@@ -1,18 +1,63 @@
-create python virtual env and activate
-    https://docs.python.org/3/tutorial/venv.html
 
-install requirements from requirements.txt, use pipreqs to generate requirements if necessary
+## Getting Started
 
-run main.py 
+Follow these steps to set up and run the project locally.
 
-Request format
- POST localhost:5000/verify-license
- body:{
+### Prerequisites
+
+- Python 3.6 or higher
+
+### Setting Up a Virtual Environment
+
+1. Create a Python virtual environment:
+
+    ```bash
+    python -m venv venv
+    ```
+
+2. Activate the virtual environment:
+
+    - On Windows:
+
+        ```bash
+        .\venv\Scripts\activate
+        ```
+
+    - On Unix or MacOS:
+
+        ```bash
+        source venv/bin/activate
+        ```
+
+### Installing Dependencies
+
+Install project dependencies using the provided `requirements.txt` file. If you need to generate the `requirements.txt` file, you can use pipreqs:
+
+    pip install pipreqs
+    pipreqs /path/to/your/project
+
+### Installing Dependencies
+    pip install -r requirements.txt
+
+### Running the Application
+```bash
+python main.py
+```
+### Making a Request
+Make a POST request to localhost:5000/verify-license with the following request body:
+
+ ```bash
+    {
     "dob": "2020-01-03",
     "license_number": "01-02-01010101"
-}
+    }
+  ```
 
-Response format
-{
-    message:"successfully verified"
-}
+### Expected Response
+Upon successful verification, the response should be:
+
+```bash
+    {
+       "message": "Successfully verified"
+    }
+  ```
