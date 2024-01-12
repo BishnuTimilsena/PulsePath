@@ -55,6 +55,9 @@
                     <li class="navbar-item">
                         <a href="/PulsePath/content/hospital.php" class="navbar-link"><strong>Hospitals</strong></a>
                     </li>
+                    <li class="navbar-item">
+                        <a href="/PulsePath/content/mapnav.php" class="navbar-link"><strong>Map</strong></a>
+                    </li>
                 </ul>
                 <!-- Dropdown Menu -->
                 <ul class="nav-action-list">
