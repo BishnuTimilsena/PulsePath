@@ -123,7 +123,7 @@ if (isset($_SESSION['uid'])) {
                     </div>
                     <div class="field">
                         <div class="label">Date of Birth</div>
-                        <input type="text" id="nepali-datepicker"/>
+                        <input type="text" id="nepali-datepicker" name="dob"/>
                     </div>
                     <div class="field">
                         <div class="label">Gender</div>
