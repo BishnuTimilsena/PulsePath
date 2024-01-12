@@ -538,6 +538,7 @@ body {
 .hospital-table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 .hospital-table th,
@@ -593,7 +594,7 @@ body {
   font-size: 25px;
 }
 
-.traffic-table {
+.traffic-table table {
   width: 100%;
   border-collapse: collapse;
 }
@@ -603,19 +604,21 @@ body {
   border: 1px solid var(--gray-x-11-gray);
   padding: 10px;
   text-align: left;
+  width: 100%;
 }
 
 .traffic-table th {
-  background-color: var(--maximum-blue-green_10);
+  background-color: var(--bittersweet);
   text-align: center;
+  color: var(--white);
 }
 
 .traffic-table tr:nth-child(even) {
-  background-color: var(--gainsboro);
+  background-color: var(--white);
 }
 
 .traffic-table tr:nth-child(odd) {
-  background-color: var(--white);
+  background-color: var(--maximum-blue-green_10);
 }
 
 /*-----------------------------------*\
