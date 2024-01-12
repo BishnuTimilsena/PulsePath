@@ -547,7 +547,6 @@ body {
   border: 1px solid var(--gray-x-11-gray);
   padding: 10px;
   text-align: left;
-  width: 100%;
 }
 
 .hospital-table th {
