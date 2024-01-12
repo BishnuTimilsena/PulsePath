@@ -32,6 +32,32 @@ if (isset($_SESSION['uid'])) {
             $error = "Please fill all the fields";
         }
 
+        //form validation
+
+        //name validation (Format: First Middle Last)
+        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+            $error = "Only letters and white space allowed";
+        }
+
+        //phone validation (Format: 98|97XXXXXXXX)
+        if (!preg_match("/^[9][7-8][0-9]{8}$/", $phone)) {
+            $error = "Invalid Phone Number";
+        }
+
+        //license validation (Format: 01-01-01-00000000)
+        if (!preg_match("/^[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{8}$/", $license)) {
+            $error = "Invalid License Number";
+        }
+
+        //organization validation (Format: alphabets only)
+        if (!preg_match("/^[a-zA-Z ]*$/", $organization)) {
+            $error = "Only letters and white space allowed";
+        }
+
+
+
+
+
         if ($password != $confirmpassword) {
             $error = "Password does not match";
         }
