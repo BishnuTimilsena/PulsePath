@@ -45,31 +45,31 @@ PulsePath is a cutting-edge web application meticulously crafted to streamline a
     ### Windows
 
     1. **Start XAMPP:**
-    - Start the Apache server by clicking the "Start" button next to Apache in the XAMPP control panel.
+        - Start the Apache server by clicking the "Start" button next to Apache in the XAMPP control panel.
 
     2. **Access the Application:**
-    - Open a web browser and go to `http://localhost/your_application_directory`.
+        - Open a web browser and go to `http://localhost/your_application_directory`.
 
     ### macOS
 
     1. **Start XAMPP:**
-    - Open XAMPP from the Applications folder.
-    - Start the Apache server by clicking the "Start" button next to Apache in the XAMPP control panel.
+        - Open XAMPP from the Applications folder.
+        - Start the Apache server by clicking the "Start" button next to Apache in the XAMPP control panel.
 
     2. **Access the Application:**
-    - Open a web browser and go to `http://localhost/your_application_directory`.
+        - Open a web browser and go to `http://localhost/your_application_directory`.
 
     ### Linux
 
     1. **Start XAMPP:**
-    - Open a terminal and navigate to the XAMPP installation directory.
-    - Start Apache with:
-        ```bash
-        sudo ./xampp startapache
-        ```
+        - Open a terminal and navigate to the XAMPP installation directory.
+        - Start Apache with:
+            ```bash
+            sudo ./xampp startapache
+            ```
 
     2. **Access the Application:**
-    - Open a web browser and go to `http://localhost/your_application_directory`.
+        - Open a web browser and go to `http://localhost/your_application_directory`.
 
 5. Install Composer using this command :
     ```bash
