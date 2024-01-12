@@ -45,35 +45,36 @@ if (!isset($_SESSION['uid'])) {
     <!-- 
     - #HEADER
   -->
-  <?php include 'navbar/navbar.php'; ?>
+    <?php include 'navbar/navbar.php'; ?>
 
     <!-- Doctor Section -->
     <section class="doctors-section">
         <h3>Doctors</h3>
         <div class="doctors-container">
-            <div class="doctor-card" onclick="showDoctorInfo('Dr. John Doe', 'Cardiologist', 'City Hospital', '123-456-7890', 'john.doe@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.')">
-                <img src="../assets/images/doc1.jpeg" alt="Dr. John Doe Image" />
-                <h2>Dr. John Doe</h2>
+            <div class="doctor-card" onclick="showDoctorInfo('Dr. Goddata Rai', 'Cardiologist', 'City Hospital', '123-456-7890', 'godatta@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.')">
+                <img src="../assets/images/doc1.jpeg" alt="Dr. Godatta Image" />
+                <h2>Dr. Godatta Rai</h2>
                 <p>Cardiologist</p>
             </div>
 
-            <div class="doctor-card" onclick="showDoctorInfo('Dr. Jane Smith', 'Orthopedic Surgeon', 'General Hospital', '987-654-3210', 'jane.smith@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.')">
+            <div class="doctor-card" onclick="showDoctorInfo('Dr. Sarmila Yadav', 'Orthopedic Surgeon', 'General Hospital', '987-654-3210', 'sarmila@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.')">
                 <img src="../assets/images/doc2.jpg" alt="Dr. Jane Smith Image" />
-                <h2>Dr. Jane Smith</h2>
+                <h2>Dr. Sarmila Yadav</h2>
                 <p>Orthopedic Surgeon</p>
             </div>
 
-            <div class="doctor-card" onclick="showDoctorInfo('Dr. Alice Johnson', 'Pediatrician', 'Children\'s Hospital', '987-654-3210', 'alice.johnson@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.')">
+            <div class="doctor-card" onclick="showDoctorInfo('Dr. Dipak Dahal', 'Pediatrician', 'Children\'s Hospital', '987-654-3210', 'dipak@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.')">
                 <img src="../assets/images/doc1.jpeg" alt="Dr. Alice Johnson Image" />
-                <h2>Dr. Alice Johnson</h2>
+                <h2>Dr. Dipak Dahal</h2>
                 <p>Pediatrician</p>
             </div>
 
-            <div class="doctor-card" onclick="showDoctorInfo('Dr. Brian Miller', 'Dermatologist', 'Skin Care Clinic', '123-456-7890', 'brian.miller@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.')">
+            <div class="doctor-card" onclick="showDoctorInfo('Dr. Bhawana Regmi', 'Dermatologist', 'Skin Care Clinic', '123-456-7890', 'bhawana@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.')">
                 <img src="../assets/images/doc2.jpg" alt="Dr. Brian Miller Image" />
-                <h2>Dr. Brian Miller</h2>
+                <h2>Dr. Bhawana Regmi</h2>
                 <p>Dermatologist</p>
             </div>
+
             <?php
 
             //foreach ($doctorData as $doctor) {
