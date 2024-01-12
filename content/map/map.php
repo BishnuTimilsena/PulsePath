@@ -1,3 +1,24 @@
+<?php
+session_start();
+$error = "";
+
+// show errors
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+if (!isset($_SESSION['uid'])) {
+    header("Location: user/login.php");
+} else {
+    $uid = $_SESSION['uid'];
+    require_once "../assets/Database/connection.php";
+    $connection = new Connection();
+    $user = $connection->get_user($uid);
+    $name = $user['name'];
+
+    $doctorData = $connection->getDoctorsData();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,75 +39,10 @@
     <link rel="stylesheet" href="css/map.css" />
 </head>
 <body id="top">
-  <!-- 
-  - #HEADER
--->
-<header class="header" data-header>
-  <div class="container">
-      <div class="overlay" data-overlay></div>
-
-      <a href="../../index.php" class="logo">
-          <img src="../../assets/images/logo.svg" width="250px" alt="PulsePath logo" />
-      </a>
-
-      <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
-          <ion-icon name="menu-outline"></ion-icon>
-      </button>
-
-      <nav class="navbar" data-navbar>
-          <button class="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
-              <ion-icon name="close-outline"></ion-icon>
-          </button>
-
-          <a href="../../index.php" class="logo">
-              <img src="../../assets/images/logo.svg" alt="PulsePath logo" />
-          </a>
-
-          <ul class="navbar-list">
-              <li class="navbar-item">
-                  <a href="../../content/doctor.php" class="navbar-link"><strong>Doctors</strong></a>
-              </li>
-
-              <li class="navbar-item">
-                  <a href="../../content/traffic.php" class="navbar-link"><strong>Traffic Control</strong></a>
-              </li>
-
-              <li class="navbar-item">
-                  <a href="../../content/hospital.php" class="navbar-link"><strong>Hospitals</strong></a>
-              </li>
-              <li class="navbar-item">
-                <a href="../../content/mapnav.php" class="navbar-link"><strong>Map</strong></a>
-            </li>
-          </ul>
-
-          <!-- Dropdown Menu -->
-          <ul class="nav-action-list">
-              <li id="profile-dropdown">
-                  <div class="nav-action-btn">
-                      <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
-                      <span class="nav-action-text">Login / Register</span>
-                  </div>
-                  <div class="dropdown-content">
-                      <div class="user-info">
-                          <img src="../../assets/images/doc1.jpeg" alt="User Avatar" class="user-avatar" />
-                          <div class="user-details">
-                              <p class="user-name"><?php echo $name; ?></p>
-                          </div>
-                      </div>
-                      <hr />
-                      <a href="#">Information Page</a>
-                      <hr />
-                      <a href="#">Vehicle Information Page</a>
-                      <hr />
-                      <a href="#">Trips Page</a>
-                      <hr />
-                      <a href="../user/logout.php">Logout</a>
-                  </div>
-              </li>
-          </ul>
-      </nav>
-  </div>
-</header>
+    <!-- 
+    - #HEADER
+  -->
+  <?php include '../navbar/navbar.php'; ?>
 
 
 <section class="map-section">
@@ -109,15 +65,9 @@
     <!-- 
     - #FOOTER
   -->
-  <section class="footer">
-    <footer>
-        <div class="footer-bottom">
-            <div class="container">
-                <p class="copyright">&copy; 2024 cat.gif. All Rights Reserved</p>
-            </div>
-        </div>
-    </footer>
-</section>
+  <?php
+    include '../footer/footer.php';
+    ?>
 
 
 <script
