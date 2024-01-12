@@ -48,8 +48,8 @@ if (isset($_SESSION['uid'])) {
                     alert("Successfully Signed up");
                     document.querySelector("form").reset()
                 </script>';
-                header("Location:./login.php");
-                die();
+            header("Location:./login.php");
+            die();
         }
     }
 }
@@ -76,6 +76,8 @@ if (isset($_SESSION['uid'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
+         <!-- Nepali Datepicker -->
+         <link href="http://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v4.0.1.min.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -121,7 +123,7 @@ if (isset($_SESSION['uid'])) {
                     </div>
                     <div class="field">
                         <div class="label">Date of Birth</div>
-                        <input type="date" name="dob" />
+                        <input type="text" id="nepali-datepicker"/>
                     </div>
                     <div class="field">
                         <div class="label">Gender</div>
@@ -205,6 +207,13 @@ if (isset($_SESSION['uid'])) {
         </div>
     </div>
     <script src="script.js"></script>
+    <script src="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/js/nepali.datepicker.v4.0.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            window.onload = function() {
+                var mainInput = document.getElementById("nepali-datepicker");
+                mainInput.nepaliDatePicker();
+            };
+        </script>
 </body>
 
 </html>
