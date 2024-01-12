@@ -50,13 +50,14 @@ Make a POST request to localhost:5000/verify-license with the following request 
     {
     "dob": "2020-01-03",
     "license_number": "01-02-01010101"
-}
-        ```
+    }
+  ```
+
 ### Expected Response
 Upon successful verification, the response should be:
 
-{
-  "message": "Successfully verified"
-}
-
-'''
+```bash
+    {
+       "message": "Successfully verified"
+    }
+  ```
