@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: "League Spartan", sans-serif;
+}
+
+:root {
+  /**
+       * colors
+       */
+
+  --maximum-blue-green_10: hsla(120, 75%, 45%, 0.1);
+  --rich-black-fogra-29: hsl(217, 28%, 9%);
+  --gray-x-11-gray: hsl(0, 0%, 74%);
+  --oxford-blue_60: hsla(230, 41%, 14%, 0.6);
+  --bittersweet: #006635; /* Red color */
+  --smoky-black: rgb(7, 6, 1);
+  --gainsboro: hsl(0, 0%, 88%);
+  --black_90: hsla(0, 0%, 0%, 0.9);
+  --cultured: hsl(200, 12%, 95%);
+  --salmon: #006635; /* Red color */
+  --white: #ffffff; /* White color */
+  --black: hsl(0, 0%, 0%);
+  --onyx: #fe0000; /* Green color */
+  /**
+       * typography
+       */
+
+  --ff-league: "League Spartan", sans-serif;
+  --ff-league-spartan: "League Spartan", sans-serif;
+}
+
+#map {
+    height: 50vh; 
+    z-index: 0;
+    margin: 20px;
+  }
+
+#map h3
+{
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  #nearestHospital,
+  #shortestPath,
+  #hospitalsWithinRadius {
+    margin-left:20px;
+
+    font-weight: bold;
+    color: var(--bittersweet);
+    text-decoration: underline;
+    text-transform: uppercase;
+  }
+
+  #nearestHospitalName{
+    font-weight: bold;
+    margin-left:20px;
+    margin-top:5px;
+    margin-bottom:10px;
+    color:var(--onyx)
+  }
+
+  #shortestPathInfo{
+    font-weight: bold;
+    margin-left:20px;
+    margin-top:5px;
+    margin-bottom:10px;
+    color:var(--onyx)
+  }
+  #hospitalsWithinRadius{
+    margin-bottom: 20px;
+  }
+  #hospitalList li {
+    list-style:decimal;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: large;
+    color: var(--onyx);
+  }
+  
+  #hospitalList li:hover {
+    color: var(--bittersweet);
+    text-decoration: underline;
+  }
