@@ -33,17 +33,16 @@ Follow these steps to set up and run the project locally.
 
 Install project dependencies using the provided `requirements.txt` file. If you need to generate the `requirements.txt` file, you can use pipreqs:
 
-```bash
-pip install pipreqs
-pipreqs /path/to/your/project
+    pip install pipreqs
+    pipreqs /path/to/your/project
 
-...
 ### Installing Dependencies
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 ### Running the Application
+```bash
 python main.py
-
+```
 ### Making a Request
 Make a POST request to localhost:5000/verify-license with the following request body:
 {
@@ -57,4 +56,4 @@ Upon successful verification, the response should be:
   "message": "Successfully verified"
 }
 
-
+'''
