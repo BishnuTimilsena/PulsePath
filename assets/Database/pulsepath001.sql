@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 08, 2024 at 03:30 PM
+-- Generation Time: Jan 12, 2024 at 04:30 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,6 +40,33 @@ CREATE TABLE `ambulance` (
 
 INSERT INTO `ambulance` (`uid`, `ambulance_no`, `organization`, `reg_date`) VALUES
 (1, '2030', 'test', '2024-01-06 14:43:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `doctors`
+--
+
+CREATE TABLE `doctors` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `specialization` varchar(255) NOT NULL,
+  `hospital` varchar(255) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`id`, `name`, `specialization`, `hospital`, `phone`, `email`, `description`, `date_added`) VALUES
+(1, 'Dr. John Doe', 'Cardiologist', 'City Hospital', '123-456-7890', 'john.doe@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.', '2024-01-08 11:48:41'),
+(2, 'Dr. Jane Smith', 'Orthopedic Surgeon', 'General Hospital', '987-654-3210', 'jane.smith@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.', '2024-01-08 11:48:41'),
+(3, 'Dr. Alice Johnson', 'Pediatrician', 'Children\'s Hospital', '987-654-3210', 'alice.johnson@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.', '2024-01-08 11:48:41'),
+(4, 'Dr. Brian Miller', 'Dermatologist', 'Skin Care Clinic', '123-456-7890', 'brian.miller@email.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ultricies ligula. Fusce vel facilisis arcu. Sed finibus ipsum eu augue bibendum, ut tincidunt turpis malesuada. Sed et tristique libero. Etiam laoreet sem sit amet neque tincidunt, a eleifend enim cursus.', '2024-01-08 11:48:41');
 
 -- --------------------------------------------------------
 
@@ -108,6 +135,39 @@ INSERT INTO `license` (`uid`, `lisence`, `issue_date`, `reg_date`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `traffic_police`
+--
+
+CREATE TABLE `traffic_police` (
+  `id` int(11) NOT NULL,
+  `office` varchar(255) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `traffic_police`
+--
+
+INSERT INTO `traffic_police` (`id`, `office`, `phone`, `date_added`) VALUES
+(1, 'Darbar Marg', '9851281608', '2024-01-08 11:13:56'),
+(2, 'Thamel', '9842528863', '2024-01-08 11:13:56'),
+(3, 'Sohrakhutte', '9858790154', '2024-01-08 11:13:56'),
+(4, 'Purano Buspark', '9866894345', '2024-01-08 11:13:56'),
+(5, 'Kalopul', '9851284443', '2024-01-08 11:13:56'),
+(6, 'Kamalpokhari', '9815619738', '2024-01-08 11:13:56'),
+(7, 'Dhalkeu', '9851282554', '2024-01-08 11:13:56'),
+(8, 'Sihadarbar', '9851282670', '2024-01-08 11:13:56'),
+(9, 'Thapathali', '9849347828', '2024-01-08 11:13:56'),
+(10, 'Kalimati', '9851282670', '2024-01-08 11:13:56'),
+(11, 'Balkhu', '9860651479', '2024-01-08 11:13:56'),
+(12, 'Kirtipur', '9848205715', '2024-01-08 11:13:56'),
+(13, 'Farping', '9851282005', '2024-01-08 11:13:56'),
+(14, 'Kalanki', '9851282554', '2024-01-08 11:13:56');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -141,6 +201,12 @@ ALTER TABLE `ambulance`
   ADD PRIMARY KEY (`uid`);
 
 --
+-- Indexes for table `doctors`
+--
+ALTER TABLE `doctors`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `hospital`
 --
 ALTER TABLE `hospital`
@@ -151,6 +217,12 @@ ALTER TABLE `hospital`
 --
 ALTER TABLE `license`
   ADD PRIMARY KEY (`uid`);
+
+--
+-- Indexes for table `traffic_police`
+--
+ALTER TABLE `traffic_police`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -169,6 +241,12 @@ ALTER TABLE `ambulance`
   MODIFY `uid` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `doctors`
+--
+ALTER TABLE `doctors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `hospital`
 --
 ALTER TABLE `hospital`
@@ -179,6 +257,12 @@ ALTER TABLE `hospital`
 --
 ALTER TABLE `license`
   MODIFY `uid` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `traffic_police`
+--
+ALTER TABLE `traffic_police`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
