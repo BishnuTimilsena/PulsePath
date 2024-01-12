@@ -8,9 +8,9 @@ run main.py
 Request format
  POST localhost:5000/verify-license
  body:{
-    "dob":"YYYY-MM-DD",
-    "license-check":"XX-XX-XXXXXXXX"
- }
+    "dob": "2020-01-03",
+    "license_number": "01-02-01010101"
+}
 
 Response format
 {
