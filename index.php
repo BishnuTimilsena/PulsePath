@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
         rel="stylesheet" />
 </head>
 
-<body id="top">
+<body id="top" class="blob-page">
     <!-- 
     - #HEADER
   -->
