@@ -42,7 +42,7 @@ if (!isset($_SESSION['uid'])) {
 </head>
 
 <body>
-  <?php include 'navbar/navbar.php'; ?>
+    <?php include 'navbar/navbar.php'; ?>
 
     <!-- Hospital Table Section -->
     <section class="hospital-section">
@@ -75,6 +75,7 @@ if (!isset($_SESSION['uid'])) {
     <?php
     include 'footer/footer.php';
     ?>
+
 </body>
 
 </html>
