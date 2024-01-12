@@ -692,7 +692,6 @@ label {
   position: fixed;
   width: 100%;
   height: 25px;
-  z-index: 998;
   background-color: var(--bittersweet);
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
