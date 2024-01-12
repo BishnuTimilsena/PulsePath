@@ -11,7 +11,7 @@ if (!isset($_SESSION['uid'])) {
     header("Location: user/login.php");
 } else {
     $uid = $_SESSION['uid'];
-    require_once "../assets/Database/connection.php";
+    require_once "../../assets/Database/connection.php";
     $connection = new Connection();
     $user = $connection->get_user($uid);
     $name = $user['name'];
