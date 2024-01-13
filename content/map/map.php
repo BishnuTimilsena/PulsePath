@@ -15,9 +15,9 @@ if (!isset($_SESSION['uid'])) {
   $connection = new Connection();
   $user = $connection->get_user($uid);
   $name = $user['name'];
-  $phone = $user['phone'];
-  $license = $user['license'];
-  $ambulance_no = $user['ambulance_no'];
+  // $phone = $user['phone'];
+  // $license = $user['license'];
+  // $ambulance_no = $user['ambulance_no'];
   // $organization = $user['organization'];
 
   $doctorData = $connection->getDoctorsData();
@@ -101,17 +101,9 @@ if (!isset($_SESSION['uid'])) {
       }).addTo(map);
       userMarker.bindPopup("You're Here").openPopup();
 
-<<<<<<< Updated upstream
       // YESLE OSM routing API use garera najik ko hospital samma ko route calculate garxa
       fetchNearestHospital(e.latlng);
     }
-=======
-      // Function to handle location retrieval
-      function onLocationFound(e) {
-            console.log(e.latlng);
-        const userMarker = L.marker(e.latlng, { icon: blueIcon }).addTo(map);
-        userMarker.bindPopup("You're Here").openPopup();
->>>>>>> Stashed changes
 
     function onLocationError(e) {
       console.error("Error getting location:", e.message);
@@ -193,7 +185,7 @@ if (!isset($_SESSION['uid'])) {
                 }
               }
 
-              // Also update the nearest hospital information here
+             
               if (distance < minDistance) {
                 minDistance = distance;
                 nearestHospital = layer;
@@ -275,7 +267,7 @@ if (!isset($_SESSION['uid'])) {
 - custom js link
 -->
   <script src="../../assets/js/script.js"></script>
-  <script src="map.js"></script>
+  <script src="../mapnav.js"></script>
 
   <!-- 
     - ionicon link

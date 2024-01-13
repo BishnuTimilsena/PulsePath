@@ -45,9 +45,9 @@ if (isset($_SESSION['uid'])) {
         }
 
         //license validation (Format: 01-01-01-00000000)
-        if (!preg_match("/^[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{8}$/", $license)) {
-            $error = "Invalid License Number";
-        }
+        // if (!preg_match("/^[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{8}$/", $license)) {
+        //     $error = "Invalid License Number";
+        // }
 
         //organization validation (Format: alphabets only)
         if (!preg_match("/^[a-zA-Z ]*$/", $organization)) {
