@@ -10,7 +10,7 @@ import time
 def verify_license(licenseData):
     try:
         chrome_options = Options()
-        chrome_options.add_argument('--headless')  # Run in headless mode (no GUI)
+        # chrome_options.add_argument('--headless')  # Run in headless mode (no GUI)
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
       
         # URL to be opened

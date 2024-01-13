@@ -101,9 +101,17 @@ if (!isset($_SESSION['uid'])) {
       }).addTo(map);
       userMarker.bindPopup("You're Here").openPopup();
 
+<<<<<<< Updated upstream
       // YESLE OSM routing API use garera najik ko hospital samma ko route calculate garxa
       fetchNearestHospital(e.latlng);
     }
+=======
+      // Function to handle location retrieval
+      function onLocationFound(e) {
+            console.log(e.latlng);
+        const userMarker = L.marker(e.latlng, { icon: blueIcon }).addTo(map);
+        userMarker.bindPopup("You're Here").openPopup();
+>>>>>>> Stashed changes
 
     function onLocationError(e) {
       console.error("Error getting location:", e.message);

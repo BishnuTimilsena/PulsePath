@@ -32,6 +32,32 @@ if (isset($_SESSION['uid'])) {
             $error = "Please fill all the fields";
         }
 
+        //form validation
+
+        //name validation (Format: First Middle Last)
+        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+            $error = "Only letters and white space allowed";
+        }
+
+        //phone validation (Format: 98|97XXXXXXXX)
+        if (!preg_match("/^[9][7-8][0-9]{8}$/", $phone)) {
+            $error = "Invalid Phone Number";
+        }
+
+        //license validation (Format: 01-01-01-00000000)
+        if (!preg_match("/^[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{8}$/", $license)) {
+            $error = "Invalid License Number";
+        }
+
+        //organization validation (Format: alphabets only)
+        if (!preg_match("/^[a-zA-Z ]*$/", $organization)) {
+            $error = "Only letters and white space allowed";
+        }
+
+
+
+
+
         if ($password != $confirmpassword) {
             $error = "Password does not match";
         }
@@ -74,10 +100,9 @@ if (isset($_SESSION['uid'])) {
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
-         <!-- Nepali Datepicker -->
-         <link href="http://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v4.0.1.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Nepali Datepicker -->
+    <link href="http://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v4.0.1.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -123,7 +148,7 @@ if (isset($_SESSION['uid'])) {
                     </div>
                     <div class="field">
                         <div class="label">Date of Birth</div>
-                        <input type="text" id="nepali-datepicker" name="dob"/>
+                        <input type="text" id="nepali-datepicker" name="dob" />
                     </div>
                     <div class="field">
                         <div class="label">Gender</div>
@@ -132,6 +157,11 @@ if (isset($_SESSION['uid'])) {
                             <option value="Female">Female</option>
                             <option value="Others">Others</option>
                         </select>
+                    </div>
+                    <div>
+                        <p style="color: red;">
+                            <?php echo $error; ?>
+                        </p>
                     </div>
                     <div class="field">
                         <button class="firstNext next">Next</button>
@@ -151,6 +181,11 @@ if (isset($_SESSION['uid'])) {
                         <div class="label">Phone Number</div>
                         <input type="number" name="phone" />
                     </div>
+                    <div>
+                        <p style="color: red;">
+                            <?php echo $error; ?>
+                        </p>
+                    </div>
                     <div class="field btns">
                         <button class="prev-1 prev">Previous</button>
                         <button class="next-1 next">Next</button>
@@ -169,6 +204,11 @@ if (isset($_SESSION['uid'])) {
                     <div class="field">
                         <div class="label" id="isd">Issued Date</div>
                         <input type="date" name="issue_date" />
+                    </div>
+                    <div>
+                        <p style="color: red;">
+                            <?php echo $error; ?>
+                        </p>
                     </div>
                     <div class="field btns">
                         <button class="prev-2 prev">Previous</button>
@@ -208,12 +248,12 @@ if (isset($_SESSION['uid'])) {
     </div>
     <script src="script.js"></script>
     <script src="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/js/nepali.datepicker.v4.0.1.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            window.onload = function() {
-                var mainInput = document.getElementById("nepali-datepicker");
-                mainInput.nepaliDatePicker();
-            };
-        </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            var mainInput = document.getElementById("nepali-datepicker");
+            mainInput.nepaliDatePicker();
+        };
+    </script>
 </body>
 
 </html>
