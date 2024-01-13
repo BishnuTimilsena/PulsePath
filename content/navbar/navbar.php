@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PulsePath</title>
-     <!-- 
+    <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="/PulsePath/assets/CSS/style.css" />
+    <link rel="stylesheet" href="/PulsePath/assets/CSS/style.css" />
 
-<!-- 
+    <!-- 
 - google font link
 -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
 </head>
+
 <body>
-        <!-- 
+    <!-- 
     - #HEADER
   -->
 
-  <header class="header" data-header>
+    <header class="header" data-header>
         <div class="container">
             <div class="overlay" data-overlay></div>
 
@@ -49,7 +51,8 @@
                     </li>
 
                     <li class="navbar-item">
-                        <a href="/PulsePath/content/traffic.php" class="navbar-link"><strong>Traffic Control</strong></a>
+                        <a href="/PulsePath/content/traffic.php" class="navbar-link"><strong>Traffic
+                                Control</strong></a>
                     </li>
 
                     <li class="navbar-item">
@@ -64,7 +67,7 @@
                     <li id="profile-dropdown">
                         <div class="nav-action-btn">
                             <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
-                            <span class="nav-action-text">Login / Register</span>
+                            <span class="nav-action-text"></span>
                         </div>
                         <div class="dropdown-content">
                             <div class="user-info">
@@ -88,7 +91,8 @@
                 </ul>
             </nav>
         </div>
-    </header>  <!-- 
+    </header>
+    <!-- 
     - custom js link
   -->
     <script src="/PulsePath/assets/js/script.js"></script>
@@ -99,10 +103,11 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-<!-- 
+    <!-- 
 - ionicon link
 -->
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
