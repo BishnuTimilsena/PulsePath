@@ -71,7 +71,7 @@ PulsePath is a cutting-edge web application meticulously crafted to streamline a
     2. **Access the Application:**
         - Open a web browser and go to `http://localhost/your_application_directory`.
 
-5. Install Composer using this command :
+5. Install Dependncy using this command :
     ```bash
     composer install
     ```
