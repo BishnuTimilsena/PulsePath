@@ -13,8 +13,8 @@ $BASE_URL = "https://rgq8n1.api.infobip.com";
 $API_KEY = "f69df43b9e545f807e18f31dccd140f9-945950d7-bf16-4363-bf76-e70a9d1a40d6";
 
 $SENDER = "InfoSMS";
-$RECIPIENT = "9779811793934";
-$MESSAGE_TEXT = "this is a sample message";
+$RECIPIENT = "9779808939158";
+$MESSAGE_TEXT = "track location at : https/localhost/track?id=5";
 
 $configuration = new Configuration(host: $BASE_URL, apiKey: $API_KEY);
 

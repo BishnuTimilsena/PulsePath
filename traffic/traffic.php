@@ -1,25 +1,3 @@
-<!-- catch data from url variables -->
-
-<?php
-
-if (!empty($_GET)) {
-  $userlat = $_GET['lat'];
-  $userlng = $_GET['lng'];
-  $destination = $_GET['destination'];
-  $destinationlat = $_GET['destinationlat'];
-  $destinationlng = $_GET['destinationlng'];
-
-  $name = $_GET['name'];
-  $phone = $_GET['phone'];
-  $license = $_GET['license'];
-  $ambulance_no = $_GET['ambulance_no'];
-  $organization = $_GET['organization'];
-} else {
-  echo "No GET data passed!";
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,255 +14,198 @@ if (!empty($_GET)) {
 </head>
 
 <body id="top">
-    <!-- 
-    - #HEADER
-  -->
-    <?php include '../content/navbar/trafficnavbar.php'; ?>
 
-    <section class="traffic-map-section">
-        <div class="title">
-            <h2 id="title">Traffic Map</h2>
-        </div>
-
-        <div class="location">
-            <div class="destination">
-                <h3 id="nearestHospital">Destination :</h3>
-                <span id="nearestHospitalName">
-                    <?php echo $destination; ?>
-                </span>
-            </div>
-
-            <div class="user">
-                <h3 id="shortestPath">User in:</h3>
-                <span id="shortestPathInfo">
-                    <span>Latitute:
-                        <span class="innerspan"> <?php echo $userlat; ?></span></span>
-                    <span>Longitute:
-                        <span class="innerspan"><?php echo $userlng; ?></span></span>
-                </span>
-            </div>
-        </div>
-
-        <div class="map">
-            <div id="map"></div>
-        </div>
-
-        <div class="driver">
-            <div class="title">
-                <h3 id="title-inner">Driver Details</h3>
-            </div>
-            <ul id="details">
-                <li>
-                    Name: <span><?php echo $name; ?></span>
-                </li>
-                <li>
-                    Phone: <span><?php echo $phone; ?></span>
-                </li>
-                <li>
-                    License: <span><?php echo $license; ?></span>
-                </li>
-                <li>
-                    Ambulance No: <span><?php echo $ambulance_no; ?></span>
-                </li>
-                <li>
-                    Organization: <span><?php echo $organization; ?></span>
-                </li>
-            </ul>
-        </div>
-    </section>
 
     <!-- 
     - #FOOTER
   -->
     <?php
-  include '../content/footer/footer.php';
-  ?>
+    include '../content/footer/footer.php';
+    ?>
 
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js" crossorigin=""></script>
 
     <script>
-    // Initialize the map
-    const map = L.map("map");
+        // Initialize the map
+        const map = L.map("map");
 
-    // Get the tile layer from OpenStreetMaps
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        // Specify the zoom of the map
-        maxZoom: 19,
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
-
-    // Function to handle location retrieval
-    function onLocationFound(e) {
-        const userMarker = L.marker(e.latlng, {
-            icon: blueIcon,
+        // Get the tile layer from OpenStreetMaps
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            // Specify the zoom of the map
+            maxZoom: 19,
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
-        userMarker.bindPopup("You're Here").openPopup();
 
-        // YESLE OSM routing API use garera najik ko hospital samma ko route calculate garxa
-        fetchNearestHospital(e.latlng);
-    }
+        // Function to handle location retrieval
+        function onLocationFound(e) {
+            const userMarker = L.marker(e.latlng, {
+                icon: blueIcon,
+            }).addTo(map);
+            userMarker.bindPopup("You're Here").openPopup();
 
-    function onLocationError(e) {
-        console.error("Error getting location:", e.message);
-        alert(
-            "Error getting location. Please check your browser settings and try again."
-        );
-    }
-
-    // Try to locate the user's position
-    map.locate({
-        setView: true,
-        maxZoom: 16,
-        watch: true, // Enable continuous location updates
-        enableHighAccuracy: true, // Use high-accuracy mode if available
-    });
-
-    // Event listeners for location services
-    map.on("locationfound", onLocationFound);
-    map.on("locationerror", onLocationError);
-
-    // Code snippet for icon is taken from github
-    const blueIcon = new L.Icon({
-        iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41],
-    });
-    let routingControl = null;
-
-    // THIS IS THE FUNCTION TO FETCH THE NEAREST HOSPITAL ACCORDING TO USER LOCATION AND TO CALCULATE ROUTE
-    function fetchNearestHospital(userLocation) {
-        fetch("data/hotosm_npl_health_facilities_points_geojson.geojson")
-            .then((response) => response.json())
-            .then((data) => {
-                let nearestHospital = null;
-                let minDistance = Infinity;
-                const uniqueHospitalNames = new Set();
-                let hospitalsDisplayed = 0;
-
-                L.geoJSON(data, {
-                    filter: function(feature, layer) {
-                        const excludedAmenities = [
-                            "clinic",
-                            "pharmacy",
-                            "dentist",
-                            "doctors",
-                            "bastu",
-                            "dental clinic",
-                        ];
-                        return !excludedAmenities.includes(feature.properties.amenity);
-                    },
-                    onEachFeature: function(feature, layer) {
-                        const hospitalName = feature.properties.name || "No Name";
-                        layer.bindPopup(`<b>${hospitalName}</b>`);
-
-                        const hospitalLatLng = layer.getLatLng();
-                        const distance = userLocation.distanceTo(hospitalLatLng);
-
-                        if (distance <= 10000 && hospitalsDisplayed < 20) {
-                            if (!uniqueHospitalNames.has(hospitalName)) {
-                                uniqueHospitalNames.add(hospitalName);
-                                hospitalsDisplayed++;
-
-                                const hospitalList =
-                                    document.getElementById("hospitalList");
-                                const listItem = document.createElement("li");
-                                listItem.textContent = hospitalName;
-                                listItem.setAttribute("data-lat", hospitalLatLng.lat);
-                                listItem.setAttribute("data-lng", hospitalLatLng.lng);
-                                hospitalList.appendChild(listItem);
-
-                                listItem.addEventListener("click", function() {
-                                    const clickedLatLng = {
-                                        lat: parseFloat(this.getAttribute("data-lat")),
-                                        lng: parseFloat(this.getAttribute("data-lng")),
-                                    };
-                                    calculateRoute(userLocation, clickedLatLng);
-                                });
-                            }
-                        }
-
-                        // Also update the nearest hospital information here
-                        if (distance < minDistance) {
-                            minDistance = distance;
-                            nearestHospital = layer;
-                            document.getElementById("nearestHospitalName").textContent =
-                                hospitalName;
-                        }
-                    },
-                }).addTo(map);
-                if (nearestHospital && minDistance <= 10000) {
-                    if (routingControl) {
-                        map.removeControl(routingControl);
-                    }
-
-                    routingControl = L.Routing.control({
-                        waypoints: [
-                            L.latLng(userLocation.lat, userLocation.lng),
-                            nearestHospital.getLatLng(),
-                        ],
-                        routeWhileDragging: true,
-                    });
-
-                    map.addControl(routingControl);
-
-                    routingControl.on("routesfound", function(e) {
-                        const route = e.routes[0];
-                        const shortestPathInfo = `${
-                  route.summary.totalDistance / 1000
-                } km, ${route.summary.totalTime / 60} min`;
-                        document.getElementById("shortestPathInfo").textContent =
-                            shortestPathInfo;
-                        console.log("Shortest Path:", route);
-                    });
-                } else {
-                    console.log("No hospital found within 10 km.");
-                }
-            });
-    }
-
-    // REMAINDER : YO TALA KO DUPLICATEFUNCTION HAINA HAI, FERI MATHI RW YO SAME XW JASTO LAGNA SAKXA
-    // THIS IS FOR LIKE IF USER CLICKS ON ANY NAME OF THE HOSPITAL THE FOR
-    // SHOWING THE PATH TO THAT HOSPITAL
-
-    // Function to calculate route from user location to clicked hospital
-    function calculateRoute(userLocation, destinationLatLng) {
-        // Remove existing routing control if any
-        if (routingControl) {
-            map.removeControl(routingControl);
+            // YESLE OSM routing API use garera najik ko hospital samma ko route calculate garxa
+            fetchNearestHospital(e.latlng);
         }
 
-        // Create a new routing control for the clicked hospital
-        routingControl = L.Routing.control({
-            waypoints: [
-                L.latLng(userLocation.lat, userLocation.lng),
-                destinationLatLng,
-            ],
-            routeWhileDragging: true,
+        function onLocationError(e) {
+            console.error("Error getting location:", e.message);
+            alert(
+                "Error getting location. Please check your browser settings and try again."
+            );
+        }
+
+        // Try to locate the user's position
+        map.locate({
+            setView: true,
+            maxZoom: 16,
+            watch: true, // Enable continuous location updates
+            enableHighAccuracy: true, // Use high-accuracy mode if available
         });
 
-        // Add routing control to the map
-        map.addControl(routingControl);
+        // Event listeners for location services
+        map.on("locationfound", onLocationFound);
+        map.on("locationerror", onLocationError);
 
-        // Listen for the routing event to get the shortest path
-        routingControl.on("routesfound", function(e) {
-            const route = e.routes[0];
-            const shortestPathInfo = `${route.summary.totalDistance / 1000} km, ${
-            route.summary.totalTime / 60
-          } min`;
-            document.getElementById("shortestPathInfo").textContent =
-                shortestPathInfo;
-            console.log("Shortest Path:", route);
+        // Code snippet for icon is taken from github
+        const blueIcon = new L.Icon({
+            iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
         });
+        let routingControl = null;
 
-        // Open the popup for the clicked hospital
-        const clickedMarker = L.marker(destinationLatLng, {
-            icon: blueIcon,
-        }).addTo(map);
-        clickedMarker.bindPopup("Destination Hospital").openPopup();
-    }
+        // THIS IS THE FUNCTION TO FETCH THE NEAREST HOSPITAL ACCORDING TO USER LOCATION AND TO CALCULATE ROUTE
+        function fetchNearestHospital(userLocation) {
+            fetch("data/hotosm_npl_health_facilities_points_geojson.geojson")
+                .then((response) => response.json())
+                .then((data) => {
+                    let nearestHospital = null;
+                    let minDistance = Infinity;
+                    const uniqueHospitalNames = new Set();
+                    let hospitalsDisplayed = 0;
+
+                    L.geoJSON(data, {
+                        filter: function (feature, layer) {
+                            const excludedAmenities = [
+                                "clinic",
+                                "pharmacy",
+                                "dentist",
+                                "doctors",
+                                "bastu",
+                                "dental clinic",
+                            ];
+                            return !excludedAmenities.includes(feature.properties.amenity);
+                        },
+                        onEachFeature: function (feature, layer) {
+                            const hospitalName = feature.properties.name || "No Name";
+                            layer.bindPopup(`<b>${hospitalName}</b>`);
+
+                            const hospitalLatLng = layer.getLatLng();
+                            const distance = userLocation.distanceTo(hospitalLatLng);
+
+                            if (distance <= 10000 && hospitalsDisplayed < 20) {
+                                if (!uniqueHospitalNames.has(hospitalName)) {
+                                    uniqueHospitalNames.add(hospitalName);
+                                    hospitalsDisplayed++;
+
+                                    const hospitalList =
+                                        document.getElementById("hospitalList");
+                                    const listItem = document.createElement("li");
+                                    listItem.textContent = hospitalName;
+                                    listItem.setAttribute("data-lat", hospitalLatLng.lat);
+                                    listItem.setAttribute("data-lng", hospitalLatLng.lng);
+                                    hospitalList.appendChild(listItem);
+
+                                    listItem.addEventListener("click", function () {
+                                        const clickedLatLng = {
+                                            lat: parseFloat(this.getAttribute("data-lat")),
+                                            lng: parseFloat(this.getAttribute("data-lng")),
+                                        };
+                                        calculateRoute(userLocation, clickedLatLng);
+                                    });
+                                }
+                            }
+
+                            // Also update the nearest hospital information here
+                            if (distance < minDistance) {
+                                minDistance = distance;
+                                nearestHospital = layer;
+                                document.getElementById("nearestHospitalName").textContent =
+                                    hospitalName;
+                            }
+                        },
+                    }).addTo(map);
+                    if (nearestHospital && minDistance <= 10000) {
+                        if (routingControl) {
+                            map.removeControl(routingControl);
+                        }
+
+                        routingControl = L.Routing.control({
+                            waypoints: [
+                                L.latLng(userLocation.lat, userLocation.lng),
+                                nearestHospital.getLatLng(),
+                            ],
+                            routeWhileDragging: true,
+                        });
+
+                        map.addControl(routingControl);
+
+                        routingControl.on("routesfound", function (e) {
+                            const route = e.routes[0];
+                            const shortestPathInfo = `${route.summary.totalDistance / 1000
+                                } km, ${route.summary.totalTime / 60} min`;
+                            document.getElementById("shortestPathInfo").textContent =
+                                shortestPathInfo;
+                            console.log("Shortest Path:", route);
+                        });
+                    } else {
+                        console.log("No hospital found within 10 km.");
+                    }
+                });
+        }
+
+        // REMAINDER : YO TALA KO DUPLICATEFUNCTION HAINA HAI, FERI MATHI RW YO SAME XW JASTO LAGNA SAKXA
+        // THIS IS FOR LIKE IF USER CLICKS ON ANY NAME OF THE HOSPITAL THE FOR
+        // SHOWING THE PATH TO THAT HOSPITAL
+
+        // Function to calculate route from user location to clicked hospital
+        function calculateRoute(userLocation, destinationLatLng) {
+            // Remove existing routing control if any
+            if (routingControl) {
+                map.removeControl(routingControl);
+            }
+
+            // Create a new routing control for the clicked hospital
+            routingControl = L.Routing.control({
+                waypoints: [
+                    L.latLng(userLocation.lat, userLocation.lng),
+                    destinationLatLng,
+                ],
+                routeWhileDragging: true,
+            });
+
+            // Add routing control to the map
+            map.addControl(routingControl);
+
+            // Listen for the routing event to get the shortest path
+            routingControl.on("routesfound", function (e) {
+                const route = e.routes[0];
+                const shortestPathInfo = `${route.summary.totalDistance / 1000} km, ${route.summary.totalTime / 60
+                    } min`;
+                document.getElementById("shortestPathInfo").textContent =
+                    shortestPathInfo;
+                console.log("Shortest Path:", route);
+            });
+
+            // Open the popup for the clicked hospital
+            const clickedMarker = L.marker(destinationLatLng, {
+                icon: blueIcon,
+            }).addTo(map);
+            clickedMarker.bindPopup("Destination Hospital").openPopup();
+        }
     </script>
     <!-- 
 - custom js link

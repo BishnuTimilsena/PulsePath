@@ -18,7 +18,7 @@ if (!isset($_SESSION['uid'])) {
   $phone = $user['phone'];
   $license = $user['license'];
   $ambulance_no = $user['ambulance_no'];
-  $organization = $user['organization'];
+  // $organization = $user['organization'];
 
   $doctorData = $connection->getDoctorsData();
 }
@@ -30,7 +30,9 @@ if (!isset($_SESSION['uid'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PulsePath</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
   <link rel="stylesheet" href="../../assets/CSS/style.css" />
   <link rel="stylesheet" href="css/map.css" />
@@ -83,7 +85,17 @@ if (!isset($_SESSION['uid'])) {
     }).addTo(map);
 
     // Function to handle location retrieval
+    const socket = new WebSocket('ws://localhost:8080/');
+    socket.addEventListener('open', (event) => {
+      console.log('WebSocket connection opened:', event);
+
+    });
     function onLocationFound(e) {
+      //websocket creation
+      // if (!socket.CONNECTING) {
+        socket.send(JSON.stringify(e.latlng));
+      // }
+
       const userMarker = L.marker(e.latlng, {
         icon: blueIcon
       }).addTo(map);
@@ -133,7 +145,7 @@ if (!isset($_SESSION['uid'])) {
           let hospitalsDisplayed = 0;
 
           L.geoJSON(data, {
-            filter: function(feature, layer) {
+            filter: function (feature, layer) {
               const excludedAmenities = [
                 "clinic",
                 "pharmacy",
@@ -144,7 +156,7 @@ if (!isset($_SESSION['uid'])) {
               ];
               return !excludedAmenities.includes(feature.properties.amenity);
             },
-            onEachFeature: function(feature, layer) {
+            onEachFeature: function (feature, layer) {
               const hospitalName = feature.properties.name || "No Name";
               layer.bindPopup(`<b>${hospitalName}</b>`);
 
@@ -163,7 +175,7 @@ if (!isset($_SESSION['uid'])) {
                   listItem.setAttribute("data-lng", hospitalLatLng.lng);
                   hospitalList.appendChild(listItem);
 
-                  listItem.addEventListener("click", function() {
+                  listItem.addEventListener("click", function () {
                     const clickedLatLng = {
                       lat: parseFloat(this.getAttribute("data-lat")),
                       lng: parseFloat(this.getAttribute("data-lng")),
@@ -197,10 +209,9 @@ if (!isset($_SESSION['uid'])) {
 
             map.addControl(routingControl);
 
-            routingControl.on("routesfound", function(e) {
+            routingControl.on("routesfound", function (e) {
               const route = e.routes[0];
-              const shortestPathInfo = `${
-                  route.summary.totalDistance / 1000
+              const shortestPathInfo = `${route.summary.totalDistance / 1000
                 } km, ${route.summary.totalTime / 60} min`;
               document.getElementById("shortestPathInfo").textContent =
                 shortestPathInfo;
@@ -236,10 +247,9 @@ if (!isset($_SESSION['uid'])) {
       map.addControl(routingControl);
 
       // Listen for the routing event to get the shortest path
-      routingControl.on("routesfound", function(e) {
+      routingControl.on("routesfound", function (e) {
         const route = e.routes[0];
-        const shortestPathInfo = `${route.summary.totalDistance / 1000} km, ${
-            route.summary.totalTime / 60
+        const shortestPathInfo = `${route.summary.totalDistance / 1000} km, ${route.summary.totalTime / 60
           } min`;
         document.getElementById("shortestPathInfo").textContent =
           shortestPathInfo;
